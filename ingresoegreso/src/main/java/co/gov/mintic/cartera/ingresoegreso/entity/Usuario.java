@@ -11,8 +11,6 @@ public class Usuario {
     private String clave;
     private Rol rol;
     private boolean estado;
-    // poiuy
-    /* poiut */
 
 
     public long getIdUsuario() {
