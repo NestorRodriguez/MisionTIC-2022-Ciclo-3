@@ -38,7 +38,6 @@ public class RolRestController {
     @PostMapping("/rol")
     public Rol createRol(@RequestBody Rol rol){
         Rol newRol = new Rol();
-        newRol.setIdRol(rol.getIdRol());
         newRol.setDescripcion(rol.getDescripcion());
         newRol.setEstado(rol.isEstado());
         return newRol;
