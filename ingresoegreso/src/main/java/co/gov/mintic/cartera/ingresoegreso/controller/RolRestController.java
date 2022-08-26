@@ -55,6 +55,7 @@ public class RolRestController {
     @DeleteMapping("/rol/{id}")
     public void deleteRol(@PathVariable int id){
         Rol deleteRol = findById(id);
+        //Buscando y borrando
     }
 
 }
