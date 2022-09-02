@@ -1,6 +1,6 @@
 package co.gov.mintic.cartera.ingresoegreso.service;
 
-import co.gov.mintic.cartera.ingresoegreso.entity.Rol;
+import co.gov.mintic.cartera.ingresoegreso.entities.Rol;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

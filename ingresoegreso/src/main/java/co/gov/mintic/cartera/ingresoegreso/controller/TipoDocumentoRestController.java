@@ -1,12 +1,10 @@
 package co.gov.mintic.cartera.ingresoegreso.controller;
 
-import co.gov.mintic.cartera.ingresoegreso.entity.Rol;
-import co.gov.mintic.cartera.ingresoegreso.entity.TipoDocumento;
+import co.gov.mintic.cartera.ingresoegreso.entities.TipoDocumento;
 import co.gov.mintic.cartera.ingresoegreso.service.ITipoDocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

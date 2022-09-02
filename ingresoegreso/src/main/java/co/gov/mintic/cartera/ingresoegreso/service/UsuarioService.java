@@ -1,9 +1,9 @@
 package co.gov.mintic.cartera.ingresoegreso.service;
 
-import co.gov.mintic.cartera.ingresoegreso.entity.Perfil;
-import co.gov.mintic.cartera.ingresoegreso.entity.Rol;
-import co.gov.mintic.cartera.ingresoegreso.entity.TipoDocumento;
-import co.gov.mintic.cartera.ingresoegreso.entity.Usuario;
+import co.gov.mintic.cartera.ingresoegreso.entities.Perfil;
+import co.gov.mintic.cartera.ingresoegreso.entities.Rol;
+import co.gov.mintic.cartera.ingresoegreso.entities.TipoDocumento;
+import co.gov.mintic.cartera.ingresoegreso.entities.Usuario;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

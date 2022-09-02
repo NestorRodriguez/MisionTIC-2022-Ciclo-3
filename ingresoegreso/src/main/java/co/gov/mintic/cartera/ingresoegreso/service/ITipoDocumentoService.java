@@ -1,9 +1,7 @@
 package co.gov.mintic.cartera.ingresoegreso.service;
 
-import co.gov.mintic.cartera.ingresoegreso.entity.TipoDocumento;
-import org.springframework.web.bind.annotation.*;
+import co.gov.mintic.cartera.ingresoegreso.entities.TipoDocumento;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ITipoDocumentoService {

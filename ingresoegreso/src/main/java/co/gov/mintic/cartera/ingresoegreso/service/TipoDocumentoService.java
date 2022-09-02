@@ -1,6 +1,6 @@
 package co.gov.mintic.cartera.ingresoegreso.service;
 
-import co.gov.mintic.cartera.ingresoegreso.entity.TipoDocumento;
+import co.gov.mintic.cartera.ingresoegreso.entities.TipoDocumento;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

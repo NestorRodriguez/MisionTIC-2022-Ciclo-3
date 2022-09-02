@@ -1,9 +1,17 @@
-package co.gov.mintic.cartera.ingresoegreso.entity;
+package co.gov.mintic.cartera.ingresoegreso.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="roles")
 public class Rol {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_rol", nullable = false)
     private long idRol;
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
+    @Column(name = "estado")
     private boolean estado;
 
     public long getIdRol() {

@@ -1,6 +1,6 @@
 package co.gov.mintic.cartera.ingresoegreso.service;
 
-import co.gov.mintic.cartera.ingresoegreso.entity.Usuario;
+import co.gov.mintic.cartera.ingresoegreso.entities.Usuario;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
