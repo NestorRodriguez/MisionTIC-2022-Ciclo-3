@@ -1,44 +1,34 @@
 package co.gov.mintic.cartera.ingresoegreso.service;
 
 import co.gov.mintic.cartera.ingresoegreso.entities.Rol;
+import co.gov.mintic.cartera.ingresoegreso.repository.IRolRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RolService implements IRolService{
 
+    @Autowired
+    private IRolRepository rolRepository;
     @Override
     public Rol findById(int id) {
-        Rol rol = new Rol();
-        rol.setIdRol(id);
-        rol.setDescripcion("Admin");
-        rol.setEstado(true);
-        return rol;
+        Optional<Rol> rol = rolRepository.findById((long) id);
+        return rol.get();
     }
 
     @Override
     public List<Rol> findAll() {
-        List<Rol> roles = new ArrayList<Rol>();
-        Rol rol1 = new Rol();
-        rol1.setIdRol(1);
-        rol1.setDescripcion("Admin");
-        rol1.setEstado(true);
-        roles.add(rol1);
-        Rol rol2 = new Rol();
-        rol2.setIdRol(2);
-        rol2.setDescripcion("User");
-        rol2.setEstado(true);
-        roles.add(rol2);
+        List<Rol> roles = (List<Rol>) rolRepository.findAll();
         return roles;
     }
 
     @Override
     public Rol createRol(Rol rol) {
-        Rol newRol = new Rol();
-        newRol.setDescripcion(rol.getDescripcion());
-        newRol.setEstado(rol.isEstado());
+        Rol newRol = rolRepository.save(rol);
         return newRol;
     }
 
