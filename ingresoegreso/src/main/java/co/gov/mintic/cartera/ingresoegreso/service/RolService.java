@@ -34,14 +34,12 @@ public class RolService implements IRolService{
 
     @Override
     public Rol updateRol(int id, Rol rol) {
-        Rol putRol = findById(id);
-        putRol.setDescripcion(rol.getDescripcion());
-        putRol.setEstado(rol.isEstado());
+        Rol putRol = rolRepository.save(rol);
         return putRol;
     }
 
     @Override
     public void deleteRol(int id) {
-        Rol deleteRol = findById(id);
+        rolRepository.deleteById((long) id);
     }
 }
