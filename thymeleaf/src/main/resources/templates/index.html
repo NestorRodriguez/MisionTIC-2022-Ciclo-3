@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Comentarios -->
     <meta charset="UTF-8">
     <title>Inicio</title>
 </head>
 <body>
-    <h1>Hola mundo</h1>
-    <h2>Hola mundo</h2>
+    <h1>Menu</h1>
+    <p th:text="${mensaje}"> lista </p>
+    <a th:href="@{/usuarios/list}">Usuarios</a>
+    <a>Empresas</a>
+    <a>Movimientos</a>
+
 </body>
 </html>
