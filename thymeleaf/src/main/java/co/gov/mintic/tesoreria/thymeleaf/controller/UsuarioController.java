@@ -1,6 +1,9 @@
 package co.gov.mintic.tesoreria.thymeleaf.controller;
 
+import co.gov.mintic.tesoreria.thymeleaf.entities.Rol;
 import co.gov.mintic.tesoreria.thymeleaf.entities.Usuario;
+import co.gov.mintic.tesoreria.thymeleaf.service.IRolService;
+import co.gov.mintic.tesoreria.thymeleaf.service.ITipoDocumentoService;
 import co.gov.mintic.tesoreria.thymeleaf.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +19,16 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @Autowired
+    private IRolService rolService;
+
+    @Autowired
+    private ITipoDocumentoService tipoDocumentoService;
+
     private final Logger LOG = Logger.getLogger(""+UsuarioController.class);
 
-    @GetMapping("/usuarios/list")
+    @GetMapping("/usuarios/listar")
     public String getListUsuarios(Model model){
         LOG.log(Level.INFO,"getListUsuarios");
         List<Usuario> usuarios = usuarioService.findAll();
@@ -26,6 +36,18 @@ public class UsuarioController {
             System.out.println(user.toString());
         model.addAttribute("usuarios", usuarios);
         return "usuarios/list";
+    }
+
+    @GetMapping("/usuarios/crear")
+    public String createUsuario(Model modelo){
+        LOG.log(Level.INFO,"createUsuario");
+        //Usuario
+        Usuario usuario = new Usuario();
+        modelo.addAttribute("usuario", usuario);
+        //Roles
+        List<Rol> roles = rolService.findAll();
+        modelo.addAttribute("roles", roles);
+        return "usuarios/modificar";
     }
 
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos del usuario</title>
+</head>
+<body>
+    <h1>Datos de usuario</h1>
+    <form th:action="@{/guardar}" method="post" th:object="${usuario}">
+        <label for="nombre">Nombre </label>
+        <input type="text" name="nombre" th:field="*{nombre}"/>
+        <br>
+        <label for="apellido">Apellido </label>
+        <input type="text" name="apellido" th:field="*{apellido}"/>
+        <br>
+        <select >
+            <option value="0" selected>Seleccione rol</option>
+            <option th:each="rol : ${roles}"
+                    th:value="${rol.idRol}"
+                    th:text="${rol.descripcion}">
+            </option>
+        </select>
+    </form>
+
+</body>
+</html>
