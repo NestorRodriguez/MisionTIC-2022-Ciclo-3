@@ -1,6 +1,7 @@
 package co.gov.mintic.tesoreria.thymeleaf.controller;
 
 import co.gov.mintic.tesoreria.thymeleaf.entities.Rol;
+import co.gov.mintic.tesoreria.thymeleaf.entities.TipoDocumento;
 import co.gov.mintic.tesoreria.thymeleaf.entities.Usuario;
 import co.gov.mintic.tesoreria.thymeleaf.service.IRolService;
 import co.gov.mintic.tesoreria.thymeleaf.service.ITipoDocumentoService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -47,7 +49,19 @@ public class UsuarioController {
         //Roles
         List<Rol> roles = rolService.findAll();
         modelo.addAttribute("roles", roles);
+        // Tipo de documento
+        List<TipoDocumento> tiposDocumentos = tipoDocumentoService.findAll();
+        modelo.addAttribute("tiposDocumentos", tiposDocumentos);
         return "usuarios/modificar";
+    }
+
+    @PostMapping("/guardar")
+    public String guardarUsuario(Usuario user){
+        LOG.log(Level.INFO,"guardarUsuario");
+        user.setEstado(true);
+        System.out.println(user.toString());
+        user = usuarioService.createUsuario(user);
+        return "redirect:/usuarios/list";
     }
 
 }

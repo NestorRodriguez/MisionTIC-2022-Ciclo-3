@@ -13,13 +13,31 @@
         <label for="apellido">Apellido </label>
         <input type="text" name="apellido" th:field="*{apellido}"/>
         <br>
-        <select >
-            <option value="0" selected>Seleccione rol</option>
+        <label for="rol">Rol </label>
+        <select th:field="*{rol.idRol}" name="rol">
+            <option  value="0" selected>Seleccione rol</option>
             <option th:each="rol : ${roles}"
                     th:value="${rol.idRol}"
                     th:text="${rol.descripcion}">
             </option>
         </select>
+        <br>
+        <label for="tipoDocumento">Tipo de documento </label>
+        <select th:field="*{tipoDocumento.idTipoDocumento}" name="tipoDocumento">
+            <option  value="0" selected>Seleccione tipo de documento</option>
+            <option th:each="tipoDocumento : ${tiposDocumentos}"
+                    th:value="${tipoDocumento.idTipoDocumento}"
+                    th:text="${tipoDocumento.descripcion}">
+            </option>
+        </select>
+        <br>
+        <label for="correo">Correo </label>
+        <input type="email" name="correo" th:field="*{correo}"/>
+        <br>
+        <label for="pass">Password </label>
+        <input type="password" name="pass" th:field="*{clave}"/>
+        <br>
+        <input type="submit" name="guardar" value="Guardar">
     </form>
 
 </body>
