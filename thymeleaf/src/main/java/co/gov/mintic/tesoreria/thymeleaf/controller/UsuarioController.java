@@ -61,7 +61,12 @@ public class UsuarioController {
         user.setEstado(true);
         System.out.println(user.toString());
         user = usuarioService.createUsuario(user);
-        return "redirect:/usuarios/list";
+        return "redirect:/usuarios/listar";
     }
 
+    @GetMapping("/editar/{id}")
+    public String editUsuario(Usuario usuario, Model modelo){
+        LOG.log(Level.INFO,"editUsuario");
+        return "usuarios/modificar";
+    }
 }

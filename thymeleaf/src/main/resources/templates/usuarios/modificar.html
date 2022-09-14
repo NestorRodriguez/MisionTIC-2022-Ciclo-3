@@ -31,6 +31,18 @@
             </option>
         </select>
         <br>
+        <label for="numeroDocumento">Número de documento </label>
+        <input type="text" name="numeroDocumento" th:field="*{cedula}"/>
+        <br>
+        <label for="perfil">Perfil </label>
+        <select th:field="*{perfil}" name="perfil">
+            <option  value="0" selected>Seleccione el tipo de perfil</option>
+            <option th:each="perfil : ${T(co.gov.mintic.tesoreria.thymeleaf.entities.Perfil).values()}"
+                    th:value="${perfil}"
+                    th:text="${perfil}">
+            </option>
+        </select>
+        <br>
         <label for="correo">Correo </label>
         <input type="email" name="correo" th:field="*{correo}"/>
         <br>
