@@ -9,8 +9,7 @@ import co.gov.mintic.tesoreria.thymeleaf.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -34,8 +33,6 @@ public class UsuarioController {
     public String getListUsuarios(Model model){
         LOG.log(Level.INFO,"getListUsuarios");
         List<Usuario> usuarios = usuarioService.findAll();
-        for (Usuario user : usuarios)
-            System.out.println(user.toString());
         model.addAttribute("usuarios", usuarios);
         return "usuarios/list";
     }
@@ -59,14 +56,28 @@ public class UsuarioController {
     public String guardarUsuario(Usuario user){
         LOG.log(Level.INFO,"guardarUsuario");
         user.setEstado(true);
-        System.out.println(user.toString());
         user = usuarioService.createUsuario(user);
         return "redirect:/usuarios/listar";
     }
 
-    @GetMapping("/editar/{id}")
-    public String editUsuario(Usuario usuario, Model modelo){
+    @RequestMapping(value = "/editar/{id}", method = RequestMethod.GET)
+    public String editUsuario(@PathVariable("id") long id, Model modelo){
         LOG.log(Level.INFO,"editUsuario");
+        Usuario usuario = usuarioService.findById(id);
+        modelo.addAttribute("usuario", usuario);
+        //Roles
+        List<Rol> roles = rolService.findAll();
+        modelo.addAttribute("roles", roles);
+        // Tipo de documento
+        List<TipoDocumento> tiposDocumentos = tipoDocumentoService.findAll();
+        modelo.addAttribute("tiposDocumentos", tiposDocumentos);
         return "usuarios/modificar";
+    }
+
+    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.GET)
+    public String deleteUsuario(@PathVariable("id") long id, Model modelo) {
+        LOG.log(Level.INFO, "deleteUsuario");
+        usuarioService.deleteUsuario(id);
+        return "redirect:/usuarios/listar";
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IUsuarioService {
 
-    public Usuario findById(int id);
+    public Usuario findById(long id);
 
     public List<Usuario> findAll();
 

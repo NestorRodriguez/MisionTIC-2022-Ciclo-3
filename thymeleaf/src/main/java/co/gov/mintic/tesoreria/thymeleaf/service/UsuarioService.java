@@ -14,8 +14,8 @@ public class UsuarioService implements IUsuarioService{
     private IUsuarioRepository usuarioRepository;
 
     @Override
-    public Usuario findById(int id) {
-        Optional<Usuario> usuario = usuarioRepository.findById((long) id);
+    public Usuario findById(long id) {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
         return usuario.get();
     }
 

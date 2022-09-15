@@ -7,6 +7,8 @@
 <body>
     <h1>Datos de usuario</h1>
     <form th:action="@{/guardar}" method="post" th:object="${usuario}">
+        <input type="hidden" name="idUsuario" th:field="*{idUsuario}">
+        <br>
         <label for="nombre">Nombre </label>
         <input type="text" name="nombre" th:field="*{nombre}"/>
         <br>
@@ -47,7 +49,7 @@
         <input type="email" name="correo" th:field="*{correo}"/>
         <br>
         <label for="pass">Password </label>
-        <input type="password" name="pass" th:field="*{clave}"/>
+        <input type="text" name="pass" th:field="*{clave}"/>
         <br>
         <input type="submit" name="guardar" value="Guardar">
     </form>
