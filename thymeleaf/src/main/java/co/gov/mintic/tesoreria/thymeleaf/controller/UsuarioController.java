@@ -9,9 +9,18 @@ import co.gov.mintic.tesoreria.thymeleaf.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
+import javax.validation.Validator;
+import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +37,7 @@ public class UsuarioController {
     private ITipoDocumentoService tipoDocumentoService;
 
     private final Logger LOG = Logger.getLogger(""+UsuarioController.class);
+    private Validator validator;
 
     @GetMapping("/usuarios/listar")
     public String getListUsuarios(Model model){
@@ -53,8 +63,20 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardar")
-    public String guardarUsuario(Usuario user){
+    public String guardarUsuario(@Valid Usuario user, BindingResult error, Model modelo){
         LOG.log(Level.INFO,"guardarUsuario");
+        /*if(user.getRol().getIdRol() == 0) {
+            String propertyPath = "violation.getPropertyPath().toString()";
+            String message = "No puede ser nulll";
+            FieldError field = new FieldError();
+            error.addError(field);
+        }*/
+        for(ObjectError e : error.getAllErrors())
+            System.out.println(e.toString());
+        if(error.hasErrors()) {
+
+            return "usuarios/modificar";
+        }
         user.setEstado(true);
         user = usuarioService.createUsuario(user);
         return "redirect:/usuarios/listar";

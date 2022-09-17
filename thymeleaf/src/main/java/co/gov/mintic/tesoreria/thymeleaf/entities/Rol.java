@@ -1,6 +1,8 @@
 package co.gov.mintic.tesoreria.thymeleaf.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Negative;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="roles")

@@ -1,33 +1,51 @@
 package co.gov.mintic.tesoreria.thymeleaf.entities;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Negative;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private long idUsuario;
+    @javax.validation.constraints.NotEmpty
     @Column(name = "nombre")
     private String nombre;
+    @javax.validation.constraints.NotEmpty
     @Column(name = "apellido")
     private String apellido;
+
     @ManyToOne
     @JoinColumn(name = "id_tipo_documento")
     private TipoDocumento tipoDocumento;
+
+    @javax.validation.constraints.NotEmpty
     @Column(name = "cedula", unique = true)
     private String cedula;
+
+    @Pattern(regexp = "[a-zA-Z0-9!#$%&'*_+-]([\\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\\/()=?¿!.,:;]|\\d)+[a-zA-Z0-9][\\.][a-zA-Z]{2,4}([\\.][a-zA-Z]{2})?" ,message = "Debe ser un correo electrónico válido")
     @Column(name = "correo", nullable = false)
     private String correo;
+
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,15}$" , message = "La contraseña debe contener minimo 8 caracteres, máximo 15, una letra mayúscula, una letra minuscula, un número, un caracter especial y sin espacios en blanco")
     @Column(name = "clave", nullable = false)
     private String clave;
-    @ManyToOne
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name = "id_rol")
     private Rol rol;
+    @NotNull
     @Column(name = "perfil")
     private Perfil perfil;
+
     @Column(name = "estado")
     private boolean estado;
 
