@@ -39,7 +39,7 @@ public class Usuario implements Serializable {
     private String clave;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rol")
     private Rol rol;
     @NotNull

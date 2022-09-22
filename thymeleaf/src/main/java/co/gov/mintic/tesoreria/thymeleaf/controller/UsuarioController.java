@@ -65,16 +65,23 @@ public class UsuarioController {
     @PostMapping("/guardar")
     public String guardarUsuario(@Valid Usuario user, BindingResult error, Model modelo){
         LOG.log(Level.INFO,"guardarUsuario");
-        /*if(user.getRol().getIdRol() == 0) {
-            String propertyPath = "violation.getPropertyPath().toString()";
-            String message = "No puede ser nulll";
-            FieldError field = new FieldError();
+        if(user.getRol().getIdRol() == 0) {
+            FieldError field = new FieldError("usuario", "rol","No puede ser null");
             error.addError(field);
-        }*/
+        }
+        if(user.getTipoDocumento().getIdTipoDocumento() == 0) {
+            FieldError field = new FieldError("usuario", "tipoDocumento","No puede ser null");
+            error.addError(field);
+        }
         for(ObjectError e : error.getAllErrors())
             System.out.println(e.toString());
         if(error.hasErrors()) {
-
+            //Roles
+            List<Rol> roles = rolService.findAll();
+            modelo.addAttribute("roles", roles);
+            // Tipo de documento
+            List<TipoDocumento> tiposDocumentos = tipoDocumentoService.findAll();
+            modelo.addAttribute("tiposDocumentos", tiposDocumentos);
             return "usuarios/modificar";
         }
         user.setEstado(true);

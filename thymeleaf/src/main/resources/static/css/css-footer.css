@@ -1,0 +1,16 @@
+html{
+    min-height: 100%;
+    position: relative;
+}
+
+body{
+    margin: 0px;
+    margin-bottom: 200px;
+}
+
+.footer-down{
+    position : absolute;
+    bottom : 0;
+    width: 100%;
+    border: 2px;
+}
