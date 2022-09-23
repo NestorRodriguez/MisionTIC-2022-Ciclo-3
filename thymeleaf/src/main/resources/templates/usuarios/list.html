@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Lista de empleados</title>
@@ -23,8 +24,8 @@
                                     <th scope="col">No.</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Correo</th>
-                                    <th scope="col">Editar</th>
-                                    <th scope="col">Eliminar</th>
+                                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,10 +33,10 @@
                                 <td th:text="${contador.count}"></td>
                                 <td th:text="${usuario.nombre}+ ' '+ ${usuario.apellido}"></td>
                                 <td th:text="${usuario.correo}"></td>
-                                <td><a th:href="@{/editar/} + ${usuario.idUsuario}" class="btn btn-primary">
+                                <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${usuario.idUsuario}" class="btn btn-primary">
                                     <i class="fa fa-edit"></i>
                                 </a></td>
-                                <td><a th:href="@{/eliminar/} + ${usuario.idUsuario}" class="btn btn-secondary">
+                                <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar/} + ${usuario.idUsuario}" class="btn btn-secondary">
                                     <i class="fa fa-remove"></i>
                                 </a></td>
                             </tr>
@@ -51,7 +52,7 @@
     </section>
 
     <section class="py-4 m-4">
-        <div class="container">
+        <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
             <div class="row">
                 <div class="col-md-4">
                     <a th:href="@{/usuarios/crear}" class="btn btn-primary btn-block">
@@ -64,11 +65,12 @@
     </section>
 
     <section>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarEmpleado">
             Agregar usuario con modal
         </button>
-
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="agregarEmpleado" tabindex="-1" aria-labelledby="agregarEmpleado" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso denegado</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.0/css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.0.0/css/all.min.css}" >
+    <link rel="stylesheet" th:href="@{/css/css-footer.css}">
+</head>
+<body>
+    <div class="d-flex align-items-center justify-content-center vh-100 bg-info">
+        <h1 class="display-1 fw-bold text-white">Acceso denegado</h1>
+        <span>No tiene permisos para ver esta página o ejecutar esta acción</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <a th:href="@{/}" class="btn btn-light btn-block">
+                        <i class="fas fa-backspace"></i>
+                        <span>Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

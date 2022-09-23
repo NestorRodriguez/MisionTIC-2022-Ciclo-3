@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Plantilla</title>
@@ -20,13 +21,16 @@
                     <li class="nav-item px-2">
                         <a th:href="@{/}" class="nav-link active">Inicio</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a th:href="@{/usuarios/listar}" class="nav-link active">Empleados</a>
+                    </li>
                 </ul>
-                <ul class="navbar-nav ms-auto">
+                <ul sec:authorize="isAuthenticated()" class="navbar-nav ms-auto">
                     <li class="nav-item mr-4">
                         <a href="#" class="nav-link">
                             <i class="fas fa-user"></i>
                             <span>Bienvenido</span>
-                            <span>usuario</span>
+                            <span sec:authentication="name">Usuario</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -73,7 +77,5 @@
       </div>
 
   </footer>
-  <script th:src="@{/webjars/bootstrap/5.1.0/js/bootstrap.bundle.min.js}"></script>
-  <script th:src="@{/webjars/popper/js/2.9.3/umd/popper.min.js}"></script>
 </body>
 </html>

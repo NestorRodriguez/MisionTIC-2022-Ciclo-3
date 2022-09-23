@@ -69,7 +69,7 @@
                             <label class="col-sm-2 col-form-label" for="perfil">Perfil</label>
                             <div class="col-sm-10">
                                 <select th:field="*{perfil}" name="perfil" class="custom-select" style="width:100%!important;height:100%!important;">
-                                    <option value="" selected>Seleccione tipo de documento</option>
+                                    <option value="" selected>Seleccione tipo de perfil</option>
                                     <option th:each="perfil : ${T(co.gov.mintic.tesoreria.thymeleaf.entities.Perfil).values()}"
                                             th:value="${perfil}"
                                             th:text="${perfil}">
@@ -84,6 +84,13 @@
                                 <input class="form-control" type="text" th:field="*{correo}" id="correo" placeholder="Correo electrónico">
                             </div>
                             <div class="alert alert-warning" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="username">Username</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" th:field="*{username}" id="username" placeholder="Usuario">
+                            </div>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="clave">Password</label>

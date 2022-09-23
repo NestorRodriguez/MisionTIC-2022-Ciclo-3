@@ -31,10 +31,14 @@ public class Usuario implements Serializable {
     private String cedula;
 
     @Pattern(regexp = "[a-zA-Z0-9!#$%&'*_+-]([\\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\\/()=?¿!.,:;]|\\d)+[a-zA-Z0-9][\\.][a-zA-Z]{2,4}([\\.][a-zA-Z]{2})?" ,message = "Debe ser un correo electrónico válido")
-    @Column(name = "correo", nullable = false)
+    @Column(name = "correo", unique = true)
     private String correo;
 
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,15}$" , message = "La contraseña debe contener minimo 8 caracteres, máximo 15, una letra mayúscula, una letra minuscula, un número, un caracter especial y sin espacios en blanco")
+    @javax.validation.constraints.NotEmpty
+    @Column(name = "username", unique = true)
+    private String username;
+
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,128}$" , message = "La contraseña debe contener minimo 8 caracteres, máximo 15, una letra mayúscula, una letra minuscula, un número, un caracter especial y sin espacios en blanco")
     @Column(name = "clave", nullable = false)
     private String clave;
 
@@ -97,6 +101,14 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getClave() {
         return clave;
     }
@@ -113,20 +125,20 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
     public Perfil getPerfil() {
         return perfil;
     }
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     @Override
@@ -138,6 +150,7 @@ public class Usuario implements Serializable {
                 ", tipoDocumento=" + tipoDocumento +
                 ", cedula='" + cedula + '\'' +
                 ", correo='" + correo + '\'' +
+                ", username='" + username + '\'' +
                 ", clave='" + clave + '\'' +
                 ", rol=" + rol +
                 ", perfil=" + perfil +

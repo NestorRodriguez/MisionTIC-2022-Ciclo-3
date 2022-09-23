@@ -6,6 +6,7 @@ import co.gov.mintic.tesoreria.thymeleaf.entities.Usuario;
 import co.gov.mintic.tesoreria.thymeleaf.service.IRolService;
 import co.gov.mintic.tesoreria.thymeleaf.service.ITipoDocumentoService;
 import co.gov.mintic.tesoreria.thymeleaf.service.IUsuarioService;
+import co.gov.mintic.tesoreria.thymeleaf.util.EncriptarPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-public class UsuarioController {
+public class UsuarioController extends EncriptarPassword {
 
     @Autowired
     private IUsuarioService usuarioService;
@@ -85,6 +86,7 @@ public class UsuarioController {
             return "usuarios/modificar";
         }
         user.setEstado(true);
+        user.setClave(encriptarPassword(user.getClave()));
         user = usuarioService.createUsuario(user);
         return "redirect:/usuarios/listar";
     }
